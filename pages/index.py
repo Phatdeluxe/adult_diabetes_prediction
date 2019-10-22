@@ -29,17 +29,14 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
         
-            ## Value Proposition
+            ## What changes could you make to reduce diabetes in your community?
 
-            Emphasize how the app will benefit users. Don't emphasize the underlying technology.
-
-            ✅ RUN is a running app that adapts to your fitness levels and designs personalized workouts to help you improve your running.
-
-            ❌ RUN is the only intelligent running app that uses sophisticated deep neural net machine learning to make your run smarter because we believe in ML driven workouts.
+            This app will predict what the percentage of adults with diabetes is by state.
+            
 
             """
         ),
-        dcc.Link(dbc.Button('Call To Action', color='primary'), href='/predictions')
+        dcc.Link(dbc.Button('Lets find out', color='primary'), href='/predictions')
     ],
     md=4,
 )
