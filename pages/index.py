@@ -29,10 +29,17 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
         
-            ## What changes could you make to reduce diabetes in your community?
+            ## How is diabetes impacting your community?
 
-            This app will predict what the percentage of adults with diabetes is by state.
+            Diabetes was the seventh leading cause of death in the United States in 2015 (ADA)
+
+            Have you ever been curious what changes could be made to reduce adult diabetes?
+
+            This app will predict what the percentage of adults with diabetes for counties in the United States.
+            You can use use it to see how certain features increase and reduce the percentage of adults with diabetes
             
+
+            This model was created using data from 2013 and earlier.
 
             """
         ),
@@ -41,13 +48,10 @@ column1 = dbc.Col(
     md=4,
 )
 
-gapminder = px.data.gapminder()
-fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
-           hover_name="country", log_x=True, size_max=60)
 
 column2 = dbc.Col(
     [
-        dcc.Graph(figure=fig),
+        html.Img(src='assets/Choropleth_diabetes.png', className='img-fluid'),
     ]
 )
 
