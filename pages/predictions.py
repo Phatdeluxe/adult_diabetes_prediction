@@ -66,21 +66,14 @@ all_options = {
 
 column1 = dbc.Col(
     [
-        dcc.Markdown('''## Predictions''', className='mb-5' ),
-        
-        dcc.Markdown('#### State'),
-        dcc.Dropdown(
-            id='states_dropdown',
-            options=[{'label': k, 'value': k} for k in all_options.keys()],
-            value='AL',
-            className='mb-2'
-        ),
 
-        dcc.Markdown('#### County'),
+        dcc.Markdown('''## Predictions''', className='mb-2' ),
 
-        dcc.Dropdown(id='county-dropdown', className='mb-5'),
+        dcc.Markdown('Start by selecting the State and County from the dropdowns to the right (you can search by typing)'),
 
-        dcc.Markdown('### Percent of Obese Adults'),
+        dcc.Markdown('Once you have State and County selected, change the dials below to set parameters for the population and see the prediction update'),
+
+        dcc.Markdown('#### Percent of Obese Adults'),
 
         daq.Knob(
             id='obese-knob',
@@ -104,9 +97,28 @@ column1 = dbc.Col(
              'ranges':{'green': [0, 13], 
              'yellow': [13, 18], 
              'red': [18, 50]}}
+        )
+    
+    ],
+    md=4,
+)
+
+column2 = dbc.Col(
+    [
+        
+        dcc.Markdown('#### State'),
+        dcc.Dropdown(
+            id='states_dropdown',
+            options=[{'label': k, 'value': k} for k in all_options.keys()],
+            value='AL',
+            className='mb-2'
         ),
 
-        dcc.Markdown('#### Percent of Children and Adults Recieveing Care Food Programs'),
+        dcc.Markdown('#### County'),
+
+        dcc.Dropdown(id='county-dropdown', className='mb-5'),
+
+        dcc.Markdown('#### Percent of Children and Adults Recieveing Care Food Programs'),    
 
         daq.Knob(
             id='foodassist-knob',
@@ -133,19 +145,26 @@ column1 = dbc.Col(
         )
 
     ],
-    md=4,
+    md=4
 )
 
-column2 = dbc.Col(
+column3 = dbc.Col(
     [
-        html.Div(),
+
         html.H2('Predicted Percent of Adults with Diabetes'),
-        html.Div(id='prediction', className='lead')
+        html.Div(id='prediction', className='lead'),
+
+        dcc.Markdown('This value is the predicted percentage of adults in the specifed County with any form of diabetes.'),
+        dcc.Markdown('For more information about how the model works, please click below.'),
+
+        dcc.Link(dbc.Button('Learn more!', color='primary'), href='/insights')
 
     ]
 )
 
-layout = dbc.Row([column1, column2])
+
+
+layout = dbc.Row([column1, column2, column3])
 
 @app.callback(
     Output('county-dropdown', 'options'),
